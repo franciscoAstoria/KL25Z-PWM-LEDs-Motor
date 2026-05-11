@@ -5,8 +5,9 @@
 
 // Define o valor do registrador MOD do TPM para configurar o período do PWM
 #define TPM_MODULE 1000         // Define a frequência do PWM fpwm = (TPM_CLK / (TPM_MODULE * PS))
-#define SLEEP_TIME_MS 1000
+#define SLEEP_TIME_MS 2000
 // Valores de duty cycle correspondentes a diferentes larguras de pulso
+uint16_t duty_30  = TPM_MODULE*0.3;  
 uint16_t duty_off  = TPM_MODULE*0;  
 uint16_t duty_on  = TPM_MODULE*1;  
 
@@ -33,9 +34,10 @@ int main(void)
     pwm_tpm_CnV(TPM2, 1, duty_off);
     k_msleep(SLEEP_TIME_MS);
     
-    pwm_tpm_CnV(TPM2, 0, duty_off);
-    pwm_tpm_CnV(TPM2, 1, duty_on);
+    pwm_tpm_CnV(TPM2, 0, duty_30);
+    pwm_tpm_CnV(TPM2, 1, duty_off);
     k_msleep(SLEEP_TIME_MS);
+
     }
 
     return 0;
