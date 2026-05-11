@@ -10,6 +10,8 @@
 uint16_t duty_30  = TPM_MODULE*0.3;  
 uint16_t duty_off  = TPM_MODULE*0;  
 uint16_t duty_on  = TPM_MODULE*1;  
+uint16_t duty_dir  = TPM_MODULE*1;  
+uint16_t duty_esq  = TPM_MODULE*1;  
 
 int main(void)
 {
@@ -30,13 +32,8 @@ int main(void)
     // Loop infinito
     for (;;)
     {
-    pwm_tpm_CnV(TPM2, 0, duty_on);
-    pwm_tpm_CnV(TPM2, 1, duty_off);
-    k_msleep(SLEEP_TIME_MS);
-    
-    pwm_tpm_CnV(TPM2, 0, duty_30);
-    pwm_tpm_CnV(TPM2, 1, duty_off);
-    k_msleep(SLEEP_TIME_MS);
+    pwm_tpm_CnV(TPM2, 0, duty_dir);
+    pwm_tpm_CnV(TPM2, 1, duty_esq);
 
     }
 
